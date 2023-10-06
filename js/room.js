@@ -120,22 +120,19 @@ async function displayRoomInfo(query) {
 function filter_floor(floor) {
   const rooms = document.querySelectorAll('.room-frame');
   rooms.forEach(room => {
-    if (floor !== 'all') {
-      room.style.display = 'block';
-      const num_div = room.querySelector('#room-number');
-      const floor_num = num_div.innerHTML.charAt(3)
-      console.log(floor_num)
-      if (floor_num != floor) {
-        room.style.display = 'none';
+      if (floor === 'all') {
+          room.style.display = 'block';
       } else {
-        room.style.display = 'block';
+          const num_div = room.querySelector('#room-number');
+          const floor_num = num_div.innerHTML.charAt(3)
+          console.log(floor_num)
+          if (floor_num == floor) {
+              room.style.display = 'block';
+          } else {
+              room.style.display = 'none';
+          }
       }
-    } else {
-      room.style.display = 'visible';
-    }
-
   });
-
 }
 
 // ====================== FORM PASIEN DI KAMAR
