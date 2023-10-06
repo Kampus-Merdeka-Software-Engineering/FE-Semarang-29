@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <title>Room View</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="no-margin">
+            <span class="Med">Med</span><span Class="Space">Space</span>
+        </div>
+        <div class="flex-row list-a">
+            <div class="nonactive box-nav no-margin">
+                <a href="index.html">
+                    <p class="no-margin ">Dashboard</p>
+                </a>
+            </div>
+
+
+            <div class="active box-nav no-margin">
+                <a href="room.html">
+                    <p class="no-margin ">Rooms</p>
+                </a>
+            </div>
+
+            <div class="nonactive box-nav no-margin">
+                <a href="docter.html">
+                    <p class="no-margin ">Doctors</p>
+                </a>
+            </div>
+
+
+            <div class="nonactive box-nav no-margin">
+                <a href="patient.html">
+                    <p class="no-margin "> Patients</p>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="hamburger no-margin">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+    </nav>
+    <div class="flex-all">
+        <aside class="flex-col noscroll">
+            <h1 class="no-margin"><span class="Med">Med</span><span Class="Space">Space</span></h1>
+            <hr class="no-margin">
+            <div class="admin-profile flex-row">
+                <svg class="profile-pic" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"
+                    fill="none">
+                    <circle cx="40" cy="40" r="31" fill="#D9D9D9" />
+                    <circle cx="40" cy="40" r="37.5" stroke="#0177FC" stroke-width="5" />
+                </svg>
+
+                <div class="namadiv">
+                    <h2 class="nama">Hi, Admin!</h2>
+                </div>
+            </div>
+            <hr class="no-margin">
+
+            <div class="no-margin bounding-box">
+                <div class="nonactive box no-margin">
+                    <a href="index.html">
+                        <p class="no-margin ">Dashboard</p>
+                    </a>
+                </div>
+
+                <div class="no-margin bounding-box">
+                    <div class="active box no-margin">
+                        <a href="">
+                            <p class="no-margin ">Rooms</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="no-margin">
+
+            <div class="no-margin bounding-box">
+                <div class="nonactive box no-margin">
+                    <a href="docter.html">
+                        <p class="no-margin ">Doctors</p>
+                    </a>
+                </div>
+
+                <div class="no-margin bounding-box">
+                    <div class="nonactive box no-margin">
+                        <a href="patient.html">
+                            <p class="no-margin ">Patients</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-------DASHBOARD------>
+        <div class="dashboard-frame">
+            <div class="flex-col heading1">
+                <h1 class="no-margin bigger-logo"><span Class="Hos-Name">Rumah Sakit Melati</span></h1>
+            </div>
+
+            <div class="flex-row filter-row">
+                <button class="filter-button" onclick="filter_floor('all')">All</button>
+                <button class="filter-button" onclick="filter_floor(5)">5th Floor</button>
+                <button class="filter-button" onclick="filter_floor(6)">6th Floor</button>
+            </div>
+
+            <dialog id="AddPatientinRoom">
+                <h1 class="no-margin Hos-Name">Reservation Form</h1>
+                <form action="" id="DataPasien">
+                    <table class="form-table">
+                        <tr>
+                            <td class="data-table">Name:</td>
+                            <td class="data-table table-name"><input type="text" name="name-patient" class="field"
+                                    placeholder="Name"></td>
+                        </tr>
+        
+                        <tr>
+                            <td class="data-table">Gender:</td>
+                            <td class="data-table table-name">
+                                <div class="flex-row">
+                                    <div class="flex-row">
+                                        <label>
+                                            <input type="radio" name="gender-patient" value="Male">
+                                            Male
+                                        </label>
+                                    </div>
+                                    <div class="flex-row">
+                                        <label>
+                                            <input type="radio" name="gender-patient" value="Female">
+                                            Female
+                                        </label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td class="data-table table-name">Address:</td>
+                            <td class="data-table table-name"><textarea class="field" name="address-patient"></textarea></td>
+                        </tr>
+        
+                        <tr>
+                            <td class="data-table table-name">Date of Birth:</td>
+                            <td class="data-table table-name"><input type="date" name="birthdate-patient" class="field"
+                                    placeholder="Birthdate"></td>
+                        </tr>
+        
+                        <tr>
+                            <td class="data-table table-name">Place of Birth:</td>
+                            <td class="data-table table-name"><input type="text" name="birthplace-patient" class="field"
+                                    placeholder="Place of Birth"></td>
+                        </tr>
+        
+                        <tr>
+                            <td class="data-table table-name">Phone Number</td>
+                            <td class="data-table table-name"><input type="text" name="phone-patient" class="field"
+                                    placeholder="Phone Number"></td>
+                        </tr>
+        
+                        <tr>
+                            <td class="data-table table-name">Email</td>
+                            <td class="data-table table-name"><input type="email" name="email-patient" class="field"
+                                    placeholder="Email"></td>
+                        </tr>
+        
+                        <tr>
+                            <td class="data-table table-name">Blood Type</td>
+                            <td class="data-table table-name">
+                                <input list="blood-type" name="bloodtype-patient" type="text" placeholder="Blood Type" class="field">
+                                <datalist id="blood-type">
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                </datalist>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td class="data-table table-name">Room</td>
+                            <td class="data-table table-name" id="isi-room">
+                                <input list="room-datalist" name="room-patient" type="text" placeholder="Room" class="field">
+                                <datalist id="room-datalist">
+                                </datalist>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td class="data-table table-name">Doctor</td>
+                            <td class="data-table table-name">
+                                <input list="doctor-datalist" name="doctor-patient" type="text" placeholder="Doctor" class="field">
+                                <datalist id="doctor-datalist">
+                                </datalist>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td class="data-table table-name">Check in Date:</td>
+                            <td class="data-table table-name"><input type="date" name="checkindate" class="field"
+                                    placeholder="Check in Date"></td>
+                        </tr>
+                    </table>
+        
+                    <div class="flex-row button-row">
+                        <button id="nosave" onclick="closeDialog('reserve')">Don't Save</button>
+                        <button id="submit-button" type="submit">Save</button>
+                    </div>
+                </form>
+            </dialog>
+        
+
+            <dialog id="no-avail">
+                <h1 class="no-margin Hos-Name">Nomor Ruangan</h1>
+                <table>
+                    <tr>
+                        <td class="data-table table-name">Name:</td>
+                        <td class="data-table table-name">Kenzie</td>
+                    </tr>
+
+                    <tr>
+                        <td class="data-table table-area">Area:</td>
+                        <td class="data-table table-area">Hibiscus</td>
+                    </tr>
+
+                    <tr>
+                        <td class="data-table table-status">Date Checked In:</td>
+                        <td class="data-table table-status">27 September 2023</td>
+                    </tr>
+                </table>
+                <button id="nosave" onclick="closeDialog('no-avail')">Close</button>
+            </dialog>
+
+            <dialog id="">
+                <h1 class="no-margin Hos-Name">Nomor Ruangan</h1>
+                <form action="" id="dataPatientinRoom">
+                    <table>
+                        <tr>
+                            <td class="data-table table-name">Name:</td>
+                            <td class="data-table table-name"><input type="text" name="Name" class="field"
+                                    placeholder="Name"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="data-table table-area">Area:</td>
+                            <td class="data-table table-area">
+                                <div class="dropdown field">
+                                    <select name="input2">
+                                        <option value="Option1">Hibiscus</option>
+                                        <option value="Option2">Orchard</option>
+                                        <option value="Option3">Bloom</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="data-table table-status">Date Checked In:</td>
+                            <td class="data-table table-status"><input type="date" name="Check In Date"
+                                    pattern="yyyy-mm-dd"></td>
+                        </tr>
+                    </table>
+
+                    <div class="flex-row button-row">
+                        <button id="nosave" onclick="closeDialog('avail')">Don't Save</button>
+                        <button id="submit-button" type="submit">Save</button>
+                    </div>
+
+                </form>
+
+
+            </dialog>
+
+            <div class="flex-wrap" id="roomInfo">
+                <div class="room-frame avail no-margin">
+                    <h1 class="room-number no-margin">R. 501</h1>
+                    <h1 class="availabilty no-margin">Available</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/room.js">
+    </script>
+    <script src="js/tools.js"></script>
+</body>
+
+</html>
