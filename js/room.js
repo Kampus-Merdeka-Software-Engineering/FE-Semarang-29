@@ -121,17 +121,17 @@ function filter_floor(floor) {
   const rooms = document.querySelectorAll('.room-frame');
   rooms.forEach(room => {
     if (floor !== 'all') {
-      room.style.display = 'block';
+      room.style.display = 'flex';
       const num_div = room.querySelector('#room-number');
       const floor_num = num_div.innerHTML.charAt(3)
       console.log(floor_num)
       if (floor_num != floor) {
         room.style.display = 'none';
       } else {
-        room.style.display = 'block';
+        room.style.display = 'flex';
       }
     } else {
-      room.style.display = 'visible';
+      room.style.display = 'flex';
     }
 
   });
@@ -208,7 +208,7 @@ async function displayDoctorsinDataList() {
   }
 }
 
-const patientForm = document.getElementById('dataPatientinRoom');
+const patientForm = document.getElementById('DataPasien');
 patientForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
@@ -230,7 +230,7 @@ patientForm.addEventListener('submit', (event) => {
       no_hp: document.getElementsByName('phone-patient')[0].value,
       email: document.getElementsByName('email-patient')[0].value,
       bloodtype: document.getElementsByName('bloodtype-patient')[0].value,
-      room_id: event.target.dataset.roomNumber,
+      room_id: document.getElementsByName('room-patient')[0].value,
       doctor_id: document.getElementsByName('doctor-patient')[0].value
     };
 
