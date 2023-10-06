@@ -6,7 +6,7 @@ const button = document.getElementById('add-reserve');
 const overlay = document.getElementById('overlay');
 
 function closeDialog(dialogId) {
-  alert('Do you want to close this tab?');
+    alert('Do you want to close this tab?');
   document.getElementById(dialogId).close();
 }
 
@@ -40,7 +40,7 @@ const patientForm = document.getElementById('DataPasien');
 
 patientForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  const genders = document.getElementsByName('gender');
+  const genders = document.getElementsByName('gender-patient');
   let gender = "";
   for (const radio of genders) {
     if (radio.checked) {
@@ -52,18 +52,60 @@ patientForm.addEventListener('submit', (event) => {
   const formData = {
     name: document.getElementsByName('name-patient')[0].value,
     gender: gender,
-    address: document.getElementsByName('address')[0].value,
-    birthday: document.getElementsByName('birthdate')[0].value,
-    birthplace: document.getElementsByName('birthdate')[0].value,
-    no_hp: document.getElementsByName('birthdate')[0].value,
-    room_number: document.getElementsByName('birthdate')[0].value,
-    room_type: document.getElementById('room_type').value
+    address: document.getElementsByName('address-patient')[0].value,
+    birthday: document.getElementsByName('birthdate-patient')[0].value,
+    birthplace: document.getElementsByName('birthplace-patient')[0].value,
+    no_hp: document.getElementsByName('phone-patient')[0].value,
+    email: document.getElementsByName('email-patient')[0].value,
+    bloodtype: document.getElementsByName('bloodtype-patient')[0].value,
+    room_id: document.getElementsByName('room-patient')[0].value,
+    doctor_id: document.getElementsByName('doctor-patient')[0].value
   };
+  
 
-  const name = document.getElementsByName('name-patient')[0].value; // Use [0] to get the first element
+  fetch("http://localhost:3000/patient", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        gender: formData.gender,
+        address: formData.address,
+        birthday: formData.birthday,
+        birthplace: formData.birthplace,
+        phone: formData.no_hp,
+        email: formData.email,
+        bloodtype: formData.bloodtype,
+        checkin_date: new Date(),
+        room_id: formData.room_id,
+        doctor_id: formData.doctor_id
+      }),
+    },
+    fetch(`http://localhost:3000/room/?room_id=${formData.room_id}`, {
+      method: 'PUT'
+    })
+    )
+    .then((response) => {
+      if (response.ok) {
+        alert("Check in completed!");
+        patientForm.close();
+        showButtons();
+        displayPatientInfo('?status=Checked In')
+        
+      } else {
+        alert("Check in Failed");
+      }
+    })
+    .catch((error) => {
+      alert(`${error.message}`);
 
-  const address = document.getElementsByName('address')[0].value; // Use [0] to get the first element
-})
+
+    })
+
+     }
+
+)
 
 async function fetchPatientInfo(query) {
   try {
@@ -114,7 +156,7 @@ async function getRoomCount() {
 
     regDiv.innerHTML = data.count_reg
     vipDiv.innerHTML = data.count_vip
-    roomDiv.innerHTML = data.count_reg + data.count_reg
+    roomDiv.innerHTML = data.room_count
   } catch (error) {
     console.error('Error fetching room information:', error);
     throw error;
@@ -172,6 +214,11 @@ async function displayPatientInfo(query) {
 
   try {
     const patientData = await fetchPatientInfo(query);
+    patientData.patients.sort((a, b) => {
+      const dateA = new Date(a.checkin_date);
+      const dateB = new Date(b.checkin_date);
+      return dateB - dateA; // Sort in descending order
+    });
 
     let patientsHTML = `<tr>
       <th class="list-name-patient">Name</th>
@@ -181,6 +228,7 @@ async function displayPatientInfo(query) {
       <th class="list-checkout">Info</th>
       </tr>`;
 
+
     patientData.patients.forEach(patient => {
       let status_class = "";
       let buttonHTML = "";
@@ -189,13 +237,14 @@ async function displayPatientInfo(query) {
         buttonHTML = `<button class="check-out">Check-Out</button>`;
       } else if (patient.status === "Discharged") {
         status_class = "status-d"
+        buttonHTML = ``
       }
       let formatDate = new Date(patient.checkin_date).toLocaleDateString('en-us', {
         year: "numeric",
         month: "short",
         day: "numeric"
       });
-      
+
       patientsHTML += `
         <tr>
         <td class="list-name-patient">${patient.name}</td>
@@ -222,37 +271,98 @@ async function displayPatientInfo(query) {
         openPatientDialog(patient);
       });
     });
+
+    const checkOutButtons = document.querySelectorAll('.check-out');
+    checkOutButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        const patient = patientData.patients[index].patient_id;
+        checkOut(patient);
+      })
+    })
   } catch (error) {
     patientTable.innerHTML = `${error.message}<p>Error fetching patient information. Please try again later.</p>`;
   }
 }
 
+async function checkOut(id) {
+  try {
+    const confirmation = confirm('Are you sure you want to check out this patient?');
+    if (!confirmation) {
+      return; // If the user cancels, do not proceed with the checkout
+    }
+    const response = await fetch(`http://localhost:3000/patient/?patient_id=${id}`, {
+      method: 'PUT'
+    });
+
+    if (response.ok) {
+      displayPatientInfo('?status=Checked In')
+      getRoomCount()
+    }
+  } catch (error) {
+    console.error(error.message);
+    throw error;
+  }
+}
+
+
+
 function openPatientDialog(patient) {
   const dialog = document.getElementById('patient-info');
-  // Close the dialog
-  dialog.close();
+  dialog.showModal()
   dialog.innerHTML = '<p>Loading patient and room information...</p>';
-  // Fetch patient information
   fetchPatientInRoom(`patient_id=${patient.patient_id}`).then(data => {
-    dialog.innerHTML = `<p>Patient ID: ${data.response.patient.patient_id}</p>
-                        <p>Name: ${data.response.patient.name}</p>
-                        <p>Room: ${data.response.patient.room_id}</p>
-                        <p>Additional data: ${data.response.patient.room.room_type}</p>
-                        <button id="cancel-button">Cancel</button>`;
-    // Add event listener to the cancel button
-    const cancelButton = dialog.querySelector('#cancel-button');
-    cancelButton.addEventListener('click', () => {
-      dialog.close();
+      let formatDate = new Date(data.response.patient.checkin_date).toLocaleDateString('en-us', {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      });
+      dialog.innerHTML = `<h1 class="no-margin Hos-Name">R. ${data.response.patient.room_id}</h1>
+      <table>
+          <tr>
+              <td class="data-table table-name">Name:</td>
+              <td class="data-table table-name">${data.response.patient.name}</td>
+          </tr>
+
+          <tr>
+              <td class="data-table table-area">Patient ID:</td>
+              <td class="data-table table-area">${data.response.patient.patient_id}</td>
+          </tr>
+
+          <tr>
+              <td class="data-table table-status">Check In Date:</td>
+              <td class="data-table table-status">${formatDate}</td>
+          </tr>
+
+          <tr>
+              <td class="data-table table-status">Room Type:</td>
+              <td class="data-table table-status">${data.response.patient.room.room_type}</td>
+          </tr>
+
+          <tr>
+              <td class="data-table table-status">Doctor:</td>
+              <td class="data-table table-status">${data.response.patient.doctor.name}</td>
+          </tr>
+      </table>
+      <button id="nosave" onclick="closeDialog('patient-info')">Close</button>`;
+    })
+    .catch(error => {
+      dialog.innerHTML = `${error} <p>Error fetching data.</p>`;
     });
-  }).catch(error => {
-    dialog.innerHTML = `${error} <p>Error fetching data.</p>`;
-  });
-  // Show the dialog
-  dialog.showModal();
+}
+
+async function fetchRoomInfo(query) {
+  try {
+    const response = await fetch(`http://localhost:3000/rooms${query}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching room information:', error);
+    throw error;
+  }
 }
 
 async function displayRoomNumber(query) {
-  const roomInfoDiv = document.getElementById('room');
+  const roomInfoDiv = document.getElementById('room-datalist');
   roomInfoDiv.innerHTML = 'Loading room information...';
 
   try {
@@ -263,7 +373,7 @@ async function displayRoomNumber(query) {
     roomData.rooms.forEach(room => {
       if (room.isOccupied === false) {
         roomsHTML += `
-        <option value="${room.room_id}">R. ${room.room_id}</option>
+        <option value="${room.room_id}"></option>
         `;
       }
     });
@@ -271,7 +381,42 @@ async function displayRoomNumber(query) {
     roomInfoDiv.innerHTML = `${roomsHTML}`;
   } catch (error) {
     roomInfoDiv.innerHTML = `<p>Error fetching room information. Please try again later.</p>`;
+    console.error(error)
+  }
+}
+
+async function fetchDoctorInfo() {
+  try {
+    const response = await fetch(`http://localhost:3000/doctors`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching room information:', error);
+    throw error;
+  }
+}
+
+async function displayDoctorsinDataList() {
+  const doctor_datalist = document.getElementById('doctor-datalist');
+  doctor_datalist.innerHTML = 'Loading doctor information...';
+
+  try {
+    const doctors = await fetchDoctorInfo('');
+
+    let doctorDatalistHTML = '';
+
+    doctors.forEach(doctor => {
+      doctorDatalistHTML += `
+        <option value="${doctor.doctor_id}">${doctor.name}</option>
+        `;
+    });
+
+    doctor_datalist.innerHTML = `${doctorDatalistHTML}`;
+  } catch (error) {
+    doctor_datalist.innerHTML = `<p>Error fetching room information. Please try again later.</p>`;
+    console.error(error)
   }
 }
 
 displayRoomNumber('isOccupied=false');
+displayDoctorsinDataList()
