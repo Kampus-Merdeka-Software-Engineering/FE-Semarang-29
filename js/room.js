@@ -135,7 +135,6 @@ function filter_floor(floor) {
     }
 
   });
-
 }
 
 // ====================== FORM PASIEN DI KAMAR
