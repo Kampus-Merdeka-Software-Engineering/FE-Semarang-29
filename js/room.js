@@ -263,7 +263,7 @@ patientForm.addEventListener('submit', (event) => {
           alert("Check in completed!");
           patientForm.close();
           showButtons();
-          displayPatientInfo('?status=Checked In')
+          displayDoctorTable('?status=Checked In')
 
         } else {
           alert("Check in Failed");
