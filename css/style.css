@@ -139,6 +139,7 @@ hr {
 }
 
 .Hos-Name {
+    text-align: center;
     color: #5D7AB5;
     font-family: Poppins;
     font-size: 40px;
@@ -514,7 +515,7 @@ td {
     flex-shrink: 0;
 }
 
-.avail, .AddPatientinRoom {
+.avail {
     background: #04739B;
 }
 
@@ -905,7 +906,7 @@ table td {
 
 .check-out, .view-info{
     color: #ffffff;
-    background-color: #b00707;
+    background-color: #d72020;
     padding: .2em 1em;
     font-family: Poppins;
     border-radius: 3em;
@@ -920,7 +921,7 @@ table td {
 
 .view-info{
     color: #3a5e0d;
-    background-color: #7ee204;
+    background-color: #51ffd4;
 }
 
 .check-out:hover {
