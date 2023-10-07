@@ -118,9 +118,21 @@ aside {
     vertical-align: middle;
 }
 
-.profile-pic {
-    width: 80px;
-    height: 80px;
+.img-wrapper {
+    width:75px;
+    height: 75px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 20px #d9d9d9;
+    padding: 4px;
+    background-color: rgba(10, 43, 114, 0.5);
+}
+
+.admin-profile {
+    max-width: 75px;
+    max-height: 75px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
 }
 
 hr {
