@@ -1,3 +1,10 @@
+const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+
+if (!isLoggedIn) {
+  // User is not logged in, redirect to login page
+  window.location.href = 'login.html';
+}
+
 async function fetchPatientInfo(query) {
     try {
         const response = await fetch(`http://localhost:3000/patients${query}`);

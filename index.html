@@ -87,7 +87,8 @@
                 <tr>
                     <td class="data-table table-name">Blood Type</td>
                     <td class="data-table table-name">
-                        <input list="blood-type" name="bloodtype-patient" type="text" placeholder="Blood Type" class="field">
+                        <input list="blood-type" name="bloodtype-patient" type="text" placeholder="Blood Type"
+                            class="field">
                         <datalist id="blood-type">
                             <option value="A+">A+</option>
                             <option value="A-">A-</option>
@@ -113,7 +114,8 @@
                 <tr>
                     <td class="data-table table-name">Doctor</td>
                     <td class="data-table table-name">
-                        <input list="doctor-datalist" name="doctor-patient" type="text" placeholder="Doctor" class="field">
+                        <input list="doctor-datalist" name="doctor-patient" type="text" placeholder="Doctor"
+                            class="field">
                         <datalist id="doctor-datalist">
                         </datalist>
                     </td>
@@ -139,52 +141,85 @@
             <table class="form-table">
                 <tr>
                     <td class="data-table">Name:</td>
-                    <td class="data-table table-name"><input type="text" name="Name" class="field" placeholder="Name">
+                    <td class="data-table table-name"><input type="text" name="name-doctor" class="field" placeholder="Name">
                     </td>
                 </tr>
 
                 <tr>
-                    <td class="data-table table-name">Address:</td>
-                    <td class="data-table table-name"><textarea class="field"></textarea></td>
+                    <td class="data-table">Gender:</td>
+                    <td class="data-table table-name">
+                        <div class="flex-row">
+                            <div class="flex-row">
+                                <label>
+                                    <input type="radio" name="gender-doctor" value="Male">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="flex-row">
+                                <label>
+                                    <input type="radio" name="gender-doctor" value="Female">
+                                    Female
+                                </label>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
 
                 <tr>
-                    <td class="data-table table-name">Date of Birth:</td>
-                    <td class="data-table table-name"><input type="date" name="birthdate" class="field"
-                            placeholder="Birthdate"></td>
+                    <td class="data-table">Availability:</td>
+                    <td class="data-table table-name">
+                        <div class="flex-row">
+                            <div class="flex-col flex-left"><label>
+                                    <input type="checkbox" name="availability-doctor" value="monday" class="no-margin" style="width: auto;">
+                                    Monday
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="availability-doctor" value="tuesday" class="no-margin" style="width: auto;">
+                                    Tuesday
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="availability-doctor" value="wednesday" class="no-margin" style="width: auto;">
+                                    Wednesday
+                                </label>
+                            </div>
+                            <div class="flex-col flex-left">
+                                <label>
+                                    <input type="checkbox" name="availability-doctor" value="thursday" class="no-margin" style="width: auto;">
+                                    Thursday
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="availability-doctor" value="friday" class="no-margin" style="width: auto;">
+                                    Friday
+                                </label>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
 
-                <tr>
-                    <td class="data-table table-name">Place of Birth:</td>
-                    <td class="data-table table-name"><input type="text" name="birthplace" class="field"
-                            placeholder="Place of Birth"></td>
-                </tr>
 
                 <tr>
                     <td class="data-table table-name">Phone Number</td>
-                    <td class="data-table table-name"><input type="text" name="phone" class="field"
+                    <td class="data-table table-name"><input type="text" name="phone-doctor" class="field"
                             placeholder="Phone Number"></td>
                 </tr>
 
                 <tr>
                     <td class="data-table table-name">Email</td>
-                    <td class="data-table table-name"><input type="email" name="email" class="field"
+                    <td class="data-table table-name"><input type="email" name="email-doctor" class="field"
                             placeholder="Email"></td>
                 </tr>
 
                 <tr>
-                    <td class="data-table table-name">Blood Type</td>
+                    <td class="data-table table-name">Specialty</td>
                     <td class="data-table table-name">
-                        <input list="blood-type" name="bloodtype" type="text" placeholder="Blood Type" class="field">
-                        <datalist id="blood-type">
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
+                        <input list="specialty" name="specialty-doctor" type="text" placeholder="Specialty" class="field">
+                        <datalist id="specialty">
+                            <option value="Pediatrician">Pediatrician</option>
+                            <option value="Cardiologist">Cardiologist</option>
+                            <option value="Opthalmologist">Opthalmologist</option>
+                            <option value="Psychiatrist">Psychiatrist</option>
+                            <option value="Neurologist">Neurologist</option>
+                            <option value="Dermatologist">Dermatologist</option>
                         </datalist>
                     </td>
                 </tr>
@@ -192,7 +227,7 @@
             </table>
 
             <div class="flex-row button-row">
-                <button id="nosave" onclick="closeDialog('avail')">Don't Save</button>
+                <button id="nosave" onclick="closeDialog('doctor')">Don't Save</button>
                 <button id="submit-button" type="submit">Save</button>
             </div>
         </form>
@@ -274,7 +309,7 @@
                     <p class="no-margin "> Patients</p>
                 </a>
             </div>
-            
+
 
         </div>
         <div class="hamburger no-margin">
@@ -346,10 +381,14 @@
 
             <div class="info-frame">
                 <div class="info-isi">
-                      <h2 class="no-margin info-title" onclick="">Room Capacity </h2>
-                      <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm96 304c0 4.4-3.6 8-8 8h-56v56c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-56h-56c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h56v-56c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v56h56c4.4 0 8 3.6 8 8v48zm0-192c0 4.4-3.6 8-8 8H104c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h176c4.4 0 8 3.6 8 8v16z"/></svg>
-                      </h2> 
-                      <!-- <div class="circle no-margin">
+                    <h2 class="no-margin info-title" onclick="">Room Capacity </h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 384 512">
+                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm96 304c0 4.4-3.6 8-8 8h-56v56c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-56h-56c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h56v-56c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v56h56c4.4 0 8 3.6 8 8v48zm0-192c0 4.4-3.6 8-8 8H104c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h176c4.4 0 8 3.6 8 8v16z" />
+                    </svg>
+                    </h2>
+                    <!-- <div class="circle no-margin">
                         <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"
                             fill="none">
                             <circle cx="55" cy="55" r="55" fill="#D9D9D9" />
@@ -373,19 +412,29 @@
                 </div>
 
                 <div class="info-isi">
-                    <h2 class="no-margin info-title">Patient Count</h2> <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M480 320a96 96 0 1 0-96-96 96 96 0 0 0 96 96zm48 32a22.88 22.88 0 0 0-7.06 1.09 124.76 124.76 0 0 1-81.89 0A22.82 22.82 0 0 0 432 352a112 112 0 0 0-112 112.62c.14 26.26 21.73 47.38 48 47.38h224c26.27 0 47.86-21.12 48-47.38A112 112 0 0 0 528 352zm-198.09 10.45A145.19 145.19 0 0 1 352 344.62V128a32 32 0 0 0-32-32h-32V32a32 32 0 0 0-32-32H96a32 32 0 0 0-32 32v64H32a32 32 0 0 0-32 32v368a16 16 0 0 0 16 16h288.31A78.62 78.62 0 0 1 288 464.79a143.06 143.06 0 0 1 41.91-102.34zM144 404a12 12 0 0 1-12 12H92a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12zm0-128a12 12 0 0 1-12 12H92a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12zm48-122a6 6 0 0 1-6 6h-20a6 6 0 0 1-6-6v-26h-26a6 6 0 0 1-6-6v-20a6 6 0 0 1 6-6h26V70a6 6 0 0 1 6-6h20a6 6 0 0 1 6 6v26h26a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6h-26zm80 250a12 12 0 0 1-12 12h-40a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12zm0-128a12 12 0 0 1-12 12h-40a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12z"/></svg>
+                    <h2 class="no-margin info-title">Patient Count</h2> <svg xmlns="http://www.w3.org/2000/svg"
+                        height="2em" viewBox="0 0 640 512">
+                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M480 320a96 96 0 1 0-96-96 96 96 0 0 0 96 96zm48 32a22.88 22.88 0 0 0-7.06 1.09 124.76 124.76 0 0 1-81.89 0A22.82 22.82 0 0 0 432 352a112 112 0 0 0-112 112.62c.14 26.26 21.73 47.38 48 47.38h224c26.27 0 47.86-21.12 48-47.38A112 112 0 0 0 528 352zm-198.09 10.45A145.19 145.19 0 0 1 352 344.62V128a32 32 0 0 0-32-32h-32V32a32 32 0 0 0-32-32H96a32 32 0 0 0-32 32v64H32a32 32 0 0 0-32 32v368a16 16 0 0 0 16 16h288.31A78.62 78.62 0 0 1 288 464.79a143.06 143.06 0 0 1 41.91-102.34zM144 404a12 12 0 0 1-12 12H92a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12zm0-128a12 12 0 0 1-12 12H92a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12zm48-122a6 6 0 0 1-6 6h-20a6 6 0 0 1-6-6v-26h-26a6 6 0 0 1-6-6v-20a6 6 0 0 1 6-6h26V70a6 6 0 0 1 6-6h20a6 6 0 0 1 6 6v26h26a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6h-26zm80 250a12 12 0 0 1-12 12h-40a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12zm0-128a12 12 0 0 1-12 12h-40a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12z" />
+                    </svg>
                     <h4 class="patient-count no-margin" id="patient-count">125</h4>
                     <h3 class="no-margin info-detail" id="patient-label">patient</h3>
                 </div>
 
                 <div class="info-isi ">
-                    <h2 class="no-margin info-title">Room Count</h2>  <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M528 224H272c-8.8 0-16 7.2-16 16v144H64V144c0-8.8-7.2-16-16-16H16c-8.8 0-16 7.2-16 16v352c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-48h512v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V336c0-61.9-50.1-112-112-112zM136 96h126.1l27.6 55.2c5.9 11.8 22.7 11.8 28.6 0L368 51.8 390.1 96H512c8.8 0 16-7.2 16-16s-7.2-16-16-16H409.9L382.3 8.8C376.4-3 359.6-3 353.7 8.8L304 108.2l-19.9-39.8c-1.4-2.7-4.1-4.4-7.2-4.4H136c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm24 256c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64z"/></svg>
+                    <h2 class="no-margin info-title">Room Count</h2> <svg xmlns="http://www.w3.org/2000/svg"
+                        height="2em" viewBox="0 0 640 512">
+                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M528 224H272c-8.8 0-16 7.2-16 16v144H64V144c0-8.8-7.2-16-16-16H16c-8.8 0-16 7.2-16 16v352c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-48h512v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V336c0-61.9-50.1-112-112-112zM136 96h126.1l27.6 55.2c5.9 11.8 22.7 11.8 28.6 0L368 51.8 390.1 96H512c8.8 0 16-7.2 16-16s-7.2-16-16-16H409.9L382.3 8.8C376.4-3 359.6-3 353.7 8.8L304 108.2l-19.9-39.8c-1.4-2.7-4.1-4.4-7.2-4.4H136c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm24 256c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64z" />
+                    </svg>
                     <!-- <h4 class="patient-count no-margin">30</h4>
                     <h3 class="no-margin info-detail" id="patient-label">available rooms</h3> -->
 
                     <div class="count">
                         <div class="text-count1">
-                            <h4 class="patient-count no-margin" id="room-count">30</h4> 
+                            <h4 class="patient-count no-margin" id="room-count">30</h4>
                             <h3 class="no-margin info-detail" id="patient-label">rooms</h3>
                         </div>
 
@@ -393,12 +442,21 @@
                             <div class="text-count2">
                                 <h4 class="room-count no-margin" id="vip-count">14</h4>
                                 <h3 class="no-margin info-detail" id="room-label">VIP rooms</h3>
-                                <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm95.8 32.6L272 480l-32-136 32-56h-96l32 56-32 136-47.8-191.4C56.9 292 0 350.3 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-72.1-56.9-130.4-128.2-133.8z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 448 512">
+                                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <path
+                                        d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm95.8 32.6L272 480l-32-136 32-56h-96l32 56-32 136-47.8-191.4C56.9 292 0 350.3 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-72.1-56.9-130.4-128.2-133.8z" />
+                                </svg>
                             </div>
 
                             <div class="text-count2">
                                 <h4 class="room-count no-margin" id="reg-count">16</h4>
-                                <h3 class="no-margin info-detail" id="room-label">Regular rooms</h3> <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M192 256c61.9 0 112-50.1 112-112S253.9 32 192 32 80 82.1 80 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C51.6 288 0 339.6 0 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zM480 256c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96zm48 32h-3.8c-13.9 4.8-28.6 8-44.2 8s-30.3-3.2-44.2-8H432c-20.4 0-39.2 5.9-55.7 15.4 24.4 26.3 39.7 61.2 39.7 99.8v38.4c0 2.2-.5 4.3-.6 6.4H592c26.5 0 48-21.5 48-48 0-61.9-50.1-112-112-112z"/></svg>
+                                <h3 class="no-margin info-detail" id="room-label">Regular rooms</h3> <svg
+                                    xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 640 512">
+                                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <path
+                                        d="M192 256c61.9 0 112-50.1 112-112S253.9 32 192 32 80 82.1 80 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C51.6 288 0 339.6 0 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zM480 256c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96zm48 32h-3.8c-13.9 4.8-28.6 8-44.2 8s-30.3-3.2-44.2-8H432c-20.4 0-39.2 5.9-55.7 15.4 24.4 26.3 39.7 61.2 39.7 99.8v38.4c0 2.2-.5 4.3-.6 6.4H592c26.5 0 48-21.5 48-48 0-61.9-50.1-112-112-112z" />
+                                </svg>
                             </div>
                         </div>
 
@@ -514,4 +572,5 @@
 
 
 </body>
+
 </html>

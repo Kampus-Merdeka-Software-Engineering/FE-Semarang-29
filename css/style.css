@@ -440,7 +440,11 @@ table {
 } */
 
 .table-name {
-    width: 50%
+    width:auto
+}
+
+.flex-left {
+    align-items: flex-start;
 }
 
 .table-room {
@@ -932,8 +936,8 @@ table td {
 }
 
 .view-info{
-    color: #3a5e0d;
-    background-color: #51ffd4;
+    color: #fff;
+    background-color: #00c851;
 }
 
 .check-out:hover {

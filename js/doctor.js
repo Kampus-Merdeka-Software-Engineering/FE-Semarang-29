@@ -1,3 +1,10 @@
+const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+
+if (!isLoggedIn) {
+  // User is not logged in, redirect to login page
+  window.location.href = 'login.html';
+}
+
 function openDialog(DialogID) {
     document.getElementById(DialogID).showModal();
   }

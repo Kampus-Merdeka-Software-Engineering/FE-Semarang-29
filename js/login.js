@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Check if the entered credentials are correct
         if (email === "admin@gmail.com" && password === "admin123") {
+            sessionStorage.setItem('isLoggedIn', 'true');
             // Redirect to index.html on successful login
             window.location.href = "index.html";
             alert("Login Successfully");

@@ -1,3 +1,10 @@
+const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+
+if (!isLoggedIn) {
+  // User is not logged in, redirect to login page
+  window.location.href = 'login.html';
+}
+
 function openDialog(roomNumber) {
   const patientForm = document.getElementById('AddPatientinRoom');
   const roomInput = document.getElementsByName('room-patient')[0];
@@ -99,7 +106,7 @@ async function displayRoomInfo(query) {
         onlick = "openNotAvailDialog"
       } else if (room.isOccupied === false) {
         occupied_message = "Available"
-        occupied_class = "AddPatientinRoom"
+        occupied_class = "avail"
         onlick = "openDialog"
       }
       roomsHTML += `

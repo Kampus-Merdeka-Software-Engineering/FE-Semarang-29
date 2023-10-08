@@ -1,3 +1,10 @@
+const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+
+if (!isLoggedIn) {
+  // User is not logged in, redirect to login page
+  window.location.href = 'login.html';
+}
+
 function openDialog(DialogID) {
   document.getElementById(DialogID).showModal();
 }
@@ -37,6 +44,7 @@ function showButtons() {
 // button.addEventListener('click', showButtons());
 
 const patientForm = document.getElementById('DataPasien');
+const reserve = document.getElementById('reserve');
 
 patientForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -89,12 +97,82 @@ patientForm.addEventListener('submit', (event) => {
     .then((response) => {
       if (response.ok) {
         alert("Check in completed!");
-        patientForm.close();
-        showButtons();
+        reserve.close();
         displayPatientInfo('?status=Checked In')
         
       } else {
         alert("Check in Failed");
+      }
+    })
+    .catch((error) => {
+      alert(`${error.message}`);
+
+
+    })
+
+     }
+
+)
+
+// --------------DOCTOR FORM--------------------
+const doctorForm = document.getElementById('DataDokter');
+const doctorDialog = document.getElementById('doctor');
+
+doctorForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const genders = document.getElementsByName('gender-doctor');
+  let gender = "";
+  for (const radio of genders) {
+    if (radio.checked) {
+      gender = radio.value;
+      break; // Stop the loop once a checked radio button is found
+    }
+  }
+
+  
+  const avails = document.getElementsByName('availability-doctor');
+  let avail = [];
+  for (const checkbox of avails) {
+    if (checkbox.checked) {
+      avail.push(checkbox.value);
+    }
+  }
+  let availtext = avail.join(', ')
+
+  const formData = {
+    name: document.getElementsByName('name-doctor')[0].value,
+    availability: availtext,
+    gender: gender,
+    phone: document.getElementsByName('phone-doctor')[0].value,
+    email: document.getElementsByName('email-doctor')[0].value,
+    specialty: document.getElementsByName('specialty-doctor')[0].value
+  };
+  
+
+  fetch("http://localhost:3000/doctor", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        gender: formData.gender,
+        phone: formData.phone,
+        email: formData.email,
+        specialty: formData.specialty,
+        availability: formData.availability
+      }),
+    }
+    )
+    .then((response) => {
+      if (response.ok) {
+        console.log(formData)
+        alert("Doctor Added!");
+        doctorDialog.close();
+        
+      } else {
+        alert("Add Doctor Failed");
       }
     })
     .catch((error) => {
