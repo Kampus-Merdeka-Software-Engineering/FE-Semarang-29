@@ -17,44 +17,101 @@
 
     <!-- DIALOG RESERVASI -->
     <dialog id="doctor">
-        <h1 class="no-margin Hos-Name">Reservation Form</h1>
-        <form action="" id="data">
-            <label for="fullname">Full Name</label>
-            <input type="text" name="fullname" class="field" placeholder="">
-            <table>
+        <h1 class="no-margin Hos-Name">Add Doctor</h1>
+        <form action="" id="DataDokter">
+            <table class="form-table">
                 <tr>
-                    <td class="data-table table-name">Name:</td>
-                    <td class="data-table table-name"></td>
+                    <td class="data-table">Name:</td>
+                    <td class="data-table table-name"><input type="text" name="name-doctor" class="field" placeholder="Name">
+                    </td>
                 </tr>
 
                 <tr>
-                    <td class="data-table table-area">Area:</td>
-                    <td class="data-table table-area">
-                        <div class="dropdown field">
-                            <select name="input2">
-                                <option value="Option1">Hibiscus</option>
-                                <option value="Option2">Orchard</option>
-                                <option value="Option3">Bloom</option>
-                            </select>
+                    <td class="data-table">Gender:</td>
+                    <td class="data-table table-name">
+                        <div class="flex-row">
+                            <div class="flex-row">
+                                <label>
+                                    <input type="radio" name="gender-doctor" value="Male">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="flex-row">
+                                <label>
+                                    <input type="radio" name="gender-doctor" value="Female">
+                                    Female
+                                </label>
+                            </div>
                         </div>
                     </td>
                 </tr>
 
                 <tr>
-                    <td class="data-table table-status">Date Checked In:</td>
-                    <td class="data-table table-status"><input type="date" name="Check In Date"
-                            pattern="yyyy-mm-dd"></td>
+                    <td class="data-table">Availability:</td>
+                    <td class="data-table table-name">
+                        <div class="flex-row">
+                            <div class="flex-col flex-left"><label>
+                                    <input type="checkbox" name="availability-doctor" value="monday" class="no-margin" style="width: auto;">
+                                    Monday
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="availability-doctor" value="tuesday" class="no-margin" style="width: auto;">
+                                    Tuesday
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="availability-doctor" value="wednesday" class="no-margin" style="width: auto;">
+                                    Wednesday
+                                </label>
+                            </div>
+                            <div class="flex-col flex-left">
+                                <label>
+                                    <input type="checkbox" name="availability-doctor" value="thursday" class="no-margin" style="width: auto;">
+                                    Thursday
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="availability-doctor" value="friday" class="no-margin" style="width: auto;">
+                                    Friday
+                                </label>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
+
+
+                <tr>
+                    <td class="data-table table-name">Phone Number</td>
+                    <td class="data-table table-name"><input type="text" name="phone-doctor" class="field"
+                            placeholder="Phone Number"></td>
+                </tr>
+
+                <tr>
+                    <td class="data-table table-name">Email</td>
+                    <td class="data-table table-name"><input type="email" name="email-doctor" class="field"
+                            placeholder="Email"></td>
+                </tr>
+
+                <tr>
+                    <td class="data-table table-name">Specialty</td>
+                    <td class="data-table table-name">
+                        <input list="specialty" name="specialty-doctor" type="text" placeholder="Specialty" class="field">
+                        <datalist id="specialty">
+                            <option value="Pediatrician">Pediatrician</option>
+                            <option value="Cardiologist">Cardiologist</option>
+                            <option value="Opthalmologist">Opthalmologist</option>
+                            <option value="Psychiatrist">Psychiatrist</option>
+                            <option value="Neurologist">Neurologist</option>
+                            <option value="Dermatologist">Dermatologist</option>
+                        </datalist>
+                    </td>
+                </tr>
+
             </table>
 
             <div class="flex-row button-row">
-                <button id="nosave" onclick="closeDialog('avail')">Don't Save</button>
+                <button id="nosave" onclick="closeDialog('doctor')">Don't Save</button>
                 <button id="submit-button" type="submit">Save</button>
             </div>
-
         </form>
-
-
     </dialog>
     <!-- END DIALOG -->
 
