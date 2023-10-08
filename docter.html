@@ -51,25 +51,25 @@
                     <td class="data-table table-name">
                         <div class="flex-row">
                             <div class="flex-col flex-left"><label>
-                                    <input type="checkbox" name="availability-doctor" value="monday" class="no-margin" style="width: auto;">
+                                    <input type="checkbox" name="availability-doctor" value="Monday" class="no-margin" style="width: auto;">
                                     Monday
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="availability-doctor" value="tuesday" class="no-margin" style="width: auto;">
+                                    <input type="checkbox" name="availability-doctor" value="Tuesday" class="no-margin" style="width: auto;">
                                     Tuesday
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="availability-doctor" value="wednesday" class="no-margin" style="width: auto;">
+                                    <input type="checkbox" name="availability-doctor" value="Wednesday" class="no-margin" style="width: auto;">
                                     Wednesday
                                 </label>
                             </div>
                             <div class="flex-col flex-left">
                                 <label>
-                                    <input type="checkbox" name="availability-doctor" value="thursday" class="no-margin" style="width: auto;">
+                                    <input type="checkbox" name="availability-doctor" value="Thursday" class="no-margin" style="width: auto;">
                                     Thursday
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="availability-doctor" value="friday" class="no-margin" style="width: auto;">
+                                    <input type="checkbox" name="availability-doctor" value="Friday" class="no-margin" style="width: auto;">
                                     Friday
                                 </label>
                             </div>
@@ -150,14 +150,17 @@
         <aside class="flex-col noscroll">
             <h1 class="no-margin"><span class="Med">Med</span><span Class="Space">Space</span></h1>
             <hr class="no-margin">
-            <div class="img-wrapper">
-                <div class="admin-profile flex-row">
-                    <img src="admin-profile.jpg" class="" width="80px" />
+            <div class="flex-row">
+                <div class="img-wrapper">
+                    <div class="admin-profile flex-row">
+                        <img src="admin-profile.jpg" class="" width="80px" />
+                    </div>
+                </div>
+                <div class="namadiv">
+                    <h2 class="nama">Hi, Admin!</h2>
                 </div>
             </div>
-            <div class="namadiv">
-                <h2 class="nama">Hi, Admin!</h2>
-            </div>
+            
             <hr class="no-margin">
     
             <div class="no-margin bounding-box">
@@ -193,7 +196,7 @@
 
         <!-------DASHBOARD------>
 
-        <div class="dashboard-frame">
+        <div class="dashboard-frame flex-start">
             <h1 class="no-margin bigger-logo"><span Class="Hos-Name">Doctors</span></h1>
             <div class="flex-row filter-row">
                 <button id="Pediatrician" class="filter-button">Pediatrician</button>
@@ -202,7 +205,8 @@
                 <button id="Psychiatrist" class="filter-button">Psychiatrist</button>
                 <button id="Neurologist" class="filter-button">Neurologist</button>
                 <button id="Dermatologist" class="filter-button">Dermatologist</button>
-                <button id="Dermatologist" class="filter-button">All</button>
+                <button id="All" class="filter-button">All</button>
+                <button id="Dermatologist" class="filter-button">Doctors Available Today</button>
               </div>
              <div class="table-container no-margin">
                 <table id="doctor-list-table"></table>
