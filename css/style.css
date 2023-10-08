@@ -146,13 +146,16 @@ hr {
 }
 
 .Hos-Name {
-    text-align: center;
     color: #5D7AB5;
     font-family: Poppins;
     font-size: 40px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+
 }
 
 .Space {
