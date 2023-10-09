@@ -325,7 +325,7 @@ a {
     color: #418AA4;
     text-align: center;
     font-family: Poppins;
-    font-size: 80.362px;
+    font-size: 5em;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -965,7 +965,7 @@ canvas {
 
 
 .table-container {
-    height: 35em; /* Adjust the height as needed */
+    height: -webkit-fill-available; /* Adjust the height as needed */
     overflow-y: auto;
     width: 100%;
   }
@@ -980,13 +980,32 @@ canvas {
         visibility: hidden;
     }
 } */
+
+
+
 @media (max-width: 1101px) {
     #room-details {
         display: none;
     }
     .info-isi {
-        flex: 1;
+        flex:1;
     }
+    .info-isi {
+        padding:1.8vh 3em;
+    }
+    .info-room {
+        padding: 1.8vh 1em;
+    }
+    .patient-count {
+        font-size: 3em;
+    }
+}
+
+@media (max-width: 1024px) {
+    #room-details {
+        display: none;
+    }
+    
 }
 
 
@@ -1034,12 +1053,18 @@ canvas {
 
     .info-isi {
         /* width: 40%; */
-        height: fit-content;
+        height: initial;
         justify-content: space-around;
+    }
+    #room-details {
+        display: flex;
     }
 }
 
 @media (max-width: 576px) {
+    #room-details {
+        display: none;
+    }
     .hamburger {
         display: block;
         height: fit-content;   

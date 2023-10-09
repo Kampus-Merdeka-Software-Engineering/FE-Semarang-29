@@ -225,7 +225,7 @@ async function displayDoctorsinDataList() {
 }
 
 const patientForm = document.getElementById('AddPatientinRoom');
-patientForm.addEventListener('submit', (event) => {
+patientForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const nameInput = document.getElementsByName('name-patient')[0];
@@ -311,47 +311,45 @@ patientForm.addEventListener('submit', (event) => {
         };
 
 
-        fetch("http://localhost:3000/patient", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: formData.name,
-                    gender: formData.gender,
-                    address: formData.address,
-                    birthday: formData.birthday,
-                    birthplace: formData.birthplace,
-                    phone: formData.no_hp,
-                    email: formData.email,
-                    bloodtype: formData.bloodtype,
-                    checkin_date: new Date(),
-                    room_id: formData.room_id,
-                    doctor_id: formData.doctor_id
-                }),
-            }.then((response) => {
-                if (response.ok) {
-                    fetch(`http://localhost:3000/room/?room_id=${formData.room_id}`, {
-                        method: 'PUT'
-                    }).then((response) => {
-                        if (response.ok) {
-                            alert("Check in completed!");
-                            patientForm.close();
-                        } else {
-                            alert("Check in Failed");
-                        }
-                    }).catch((error) => {
-                        alert(`${error.message}`);
-                    })
-                } else {
-                    alert("Check in Failed");
-                }
-            })
-            .catch((error) => {
-                alert(`${error.message}`);
-            })
-
-        )
+        try {
+          const patientResponse = await fetch("http://localhost:3000/patient", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                  name: formData.name,
+                  gender: formData.gender,
+                  address: formData.address,
+                  birthday: formData.birthday,
+                  birthplace: formData.birthplace,
+                  phone: formData.no_hp,
+                  email: formData.email,
+                  bloodtype: formData.bloodtype,
+                  checkin_date: new Date(),
+                  room_id: formData.room_id,
+                  doctor_id: formData.doctor_id
+              })
+          });
+  
+          if (!patientResponse.ok) {
+              throw new Error('Check in failed for the patient.');
+          }
+  
+          const roomResponse = await fetch(`http://localhost:3000/room/?room_id=${formData.room_id}`, {
+              method: 'PUT'
+          });
+  
+          if (roomResponse.ok) {
+              alert("Check in completed!");
+              patientForm.close();
+              displayRoomInfo('');
+          } else {
+              throw new Error('Check in failed for the room.');
+          }
+      } catch (error) {
+          alert(`${error.message}`);
+      }
 
 
     }
