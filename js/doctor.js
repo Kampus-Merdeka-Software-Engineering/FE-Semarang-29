@@ -88,7 +88,7 @@ function filterButton(event) {
 
 async function fetchDoctorInfo() {
   try {
-    const response = await fetch(`http://localhost:3000/doctors`);
+    const response = await fetch(`https://curious-hospital-gown-tuna.cyclic.app/doctors`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -191,7 +191,7 @@ doctorForm.addEventListener('submit', (event) => {
     };
 
 
-    fetch("http://localhost:3000/doctor", {
+    fetch("https://curious-hospital-gown-tuna.cyclic.app/doctor", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

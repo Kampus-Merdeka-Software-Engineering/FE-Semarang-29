@@ -29,7 +29,7 @@ async function openNotAvailDialog(roomNumber) {
     roomData.innerHTML = '<p>Loading room information...</p>';
 
     try {
-        const response = await fetch(`http://localhost:3000/room/patient/?room_id=${roomNumber}`);
+        const response = await fetch(`https://curious-hospital-gown-tuna.cyclic.app/room/patient/?room_id=${roomNumber}`);
         if (!response.ok) {
             throw new Error('Failed to fetch room information');
         }
@@ -89,7 +89,7 @@ function closeDialog(dialogId) {
 
 async function fetchRoomInfo(query) {
     try {
-        const response = await fetch(`http://localhost:3000/rooms${query}`);
+        const response = await fetch(`https://curious-hospital-gown-tuna.cyclic.app/rooms${query}`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -158,7 +158,7 @@ function filter_floor(floor) {
 
 async function fetchRoomInfo(query) {
     try {
-        const response = await fetch(`http://localhost:3000/rooms${query}`);
+        const response = await fetch(`https://curious-hospital-gown-tuna.cyclic.app/rooms${query}`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -193,7 +193,7 @@ async function displayRoomNumber(query) {
 
 async function fetchDoctorInfo() {
     try {
-        const response = await fetch(`http://localhost:3000/doctors`);
+        const response = await fetch(`https://curious-hospital-gown-tuna.cyclic.app/doctors`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -312,7 +312,7 @@ patientForm.addEventListener('submit', async (event) => {
 
 
         try {
-          const patientResponse = await fetch("http://localhost:3000/patient", {
+          const patientResponse = await fetch("https://curious-hospital-gown-tuna.cyclic.app/patient", {
               method: "POST",
               headers: {
                   "Content-Type": "application/json",
@@ -336,7 +336,7 @@ patientForm.addEventListener('submit', async (event) => {
               throw new Error('Check in failed for the patient.');
           }
   
-          const roomResponse = await fetch(`http://localhost:3000/room/?room_id=${formData.room_id}`, {
+          const roomResponse = await fetch(`https://curious-hospital-gown-tuna.cyclic.app/room/?room_id=${formData.room_id}`, {
               method: 'PUT'
           });
   

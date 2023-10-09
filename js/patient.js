@@ -7,7 +7,7 @@ if (!isLoggedIn) {
 
 async function fetchPatientInfo(query) {
   try {
-    const response = await fetch(`http://localhost:3000/patients${query}`);
+    const response = await fetch(`https://curious-hospital-gown-tuna.cyclic.app/patients${query}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -117,7 +117,7 @@ displayPatientInfo('')
 
 async function fetchPatientInRoom(query) {
   try {
-    const response = await fetch(`http://localhost:3000/patient/?${query}`);
+    const response = await fetch(`https://curious-hospital-gown-tuna.cyclic.app/patient/?${query}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -188,7 +188,7 @@ async function checkOut(id) {
     if (!confirmation) {
       return; // If the user cancels, do not proceed with the checkout
     }
-    const response = await fetch(`http://localhost:3000/patient/?patient_id=${id}`, {
+    const response = await fetch(`https://curious-hospital-gown-tuna.cyclic.app/patient/?patient_id=${id}`, {
       method: 'PUT'
     });
 
